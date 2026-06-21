@@ -6,7 +6,6 @@ const hero = document.querySelector(".hero");
 let slideIndex = 0;
 let heroTimer = null;
 let heroPausedByUser = false;
-let heroPausedByInteraction = false;
 let activeLanguage = "en";
 
 function onMotionPreferenceChange(callback) {
@@ -35,7 +34,7 @@ function showSlide(index) {
 }
 
 function canAutoPlayHero() {
-  return slides.length > 1 && !motionQuery.matches && !heroPausedByUser && !heroPausedByInteraction && document.visibilityState === "visible";
+  return slides.length > 1 && !motionQuery.matches && !heroPausedByUser && document.visibilityState === "visible";
 }
 
 function stopHeroAutoPlay() {
@@ -59,19 +58,9 @@ function syncCarouselToggle() {
   window.lucide?.createIcons();
 }
 
-function setHeroInteractionPaused(paused) {
-  heroPausedByInteraction = paused;
-  hero?.classList.toggle("is-paused", heroPausedByUser || heroPausedByInteraction);
-  if (paused) {
-    stopHeroAutoPlay();
-  } else {
-    startHeroAutoPlay();
-  }
-}
-
 function setHeroUserPaused(paused) {
   heroPausedByUser = paused;
-  hero?.classList.toggle("is-paused", heroPausedByUser || heroPausedByInteraction);
+  hero?.classList.toggle("is-paused", heroPausedByUser);
   syncCarouselToggle();
   if (paused) {
     stopHeroAutoPlay();
@@ -92,15 +81,6 @@ carouselToggles.forEach((carouselToggle) => {
 });
 showSlide(0);
 syncCarouselToggle();
-
-if (hero) {
-  hero.addEventListener("mouseenter", () => setHeroInteractionPaused(true));
-  hero.addEventListener("mouseleave", () => setHeroInteractionPaused(false));
-  hero.addEventListener("focusin", () => setHeroInteractionPaused(true));
-  hero.addEventListener("focusout", (event) => {
-    if (!hero.contains(event.relatedTarget)) setHeroInteractionPaused(false);
-  });
-}
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {

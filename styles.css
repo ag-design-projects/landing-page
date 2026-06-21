@@ -740,7 +740,6 @@ p,
   background:
     radial-gradient(ellipse 46rem 36rem at 15% 10%, rgb(85 83 170 / .38), transparent 66%),
     radial-gradient(ellipse 64rem 54rem at 94% 18%, rgb(18 168 224 / .34), transparent 68%),
-    linear-gradient(132deg, transparent 0 46%, rgb(40 0 113 / .6) 46.4% 47.8%, transparent 48.2%),
     linear-gradient(90deg, rgb(255 255 255 / .04), rgb(255 255 255 / .16) 46%, rgb(255 255 255 / .7));
 }
 
