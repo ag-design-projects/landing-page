@@ -255,10 +255,17 @@ function getEligibilityColor(score) {
   return "var(--error)";
 }
 
-function getEligibilityLabel(score) {
-  if (score >= 70) return translateUI("Strong match");
-  if (score >= 45) return translateUI("Partial match");
-  return translateUI("Low match");
+function getEligibilityStepsLabel(score) {
+  if (score >= 70) return translateUI("1 more step to go");
+  if (score >= 45) return translateUI("2 more steps to go");
+  return translateUI("3 more steps to go");
+}
+
+function setSchemeCompletedAction(card) {
+  const action = card?.querySelector(".apply-cta");
+  if (!action) return;
+  action.textContent = translateUI("Apply");
+  action.dataset.schemeAction = "apply";
 }
 
 function renderEligibilityMeter(target, score) {
@@ -272,10 +279,10 @@ function renderEligibilityMeter(target, score) {
   const track = document.createElement("div");
   const trackFill = document.createElement("span");
   const label = document.createElement("small");
-  summaryLabel.textContent = translateUI("Eligibility match");
+  summaryLabel.textContent = translateUI("Eligibility progress");
   summaryScore.textContent = `${score}%`;
   track.className = "eligibility-track";
-  label.textContent = getEligibilityLabel(score);
+  label.textContent = getEligibilityStepsLabel(score);
   summary.append(summaryLabel, summaryScore);
   track.append(trackFill);
   target.replaceChildren(summary, track, label);
@@ -312,6 +319,8 @@ function showSchemeDetails({ skipped = false, completed = false, score = null } 
   renderEligibilityMeter(eligibilityResult, score);
   if (activeSchemeCard) {
     activeSchemeCard.classList.add("has-eligibility");
+    activeSchemeCard.dataset.eligibilityScore = String(score);
+    setSchemeCompletedAction(activeSchemeCard);
     renderEligibilityMeter(activeSchemeCard.querySelector(".eligibility-meter"), score);
   }
 }
@@ -365,7 +374,15 @@ function startEligibilityQuiz(card) {
 document.querySelectorAll(".scheme-grid article .apply-cta").forEach((trigger) => {
   trigger.addEventListener("click", (event) => {
     event.preventDefault();
-    startEligibilityQuiz(trigger.closest("article"));
+    const card = trigger.closest("article");
+    if (card?.classList.contains("has-eligibility")) {
+      activeSchemeCard = card;
+      populateSchemeDialog(card);
+      showSchemeDetails({ completed: true, score: Number(card.dataset.eligibilityScore) || 0 });
+      if (!dialog.open) dialog.showModal();
+      return;
+    }
+    startEligibilityQuiz(card);
   });
 });
 
@@ -684,9 +701,13 @@ const translationDictionary = {
     "Step 3 of 3": "चरण 3 / 3",
     "Scheme details": "योजना विवरण",
     "Eligibility match": "पात्रता मिलान",
+    "Eligibility progress": "पात्रता प्रगति",
     "Strong match": "मजबूत मिलान",
     "Partial match": "आंशिक मिलान",
     "Low match": "कम मिलान",
+    "1 more step to go": "1 और चरण बाकी",
+    "2 more steps to go": "2 और चरण बाकी",
+    "3 more steps to go": "3 और चरण बाकी",
     "Do you have basic KYC documents such as Aadhaar, PAN/Form 60 or address proof?": "क्या आपके पास आधार, PAN/Form 60 या पता प्रमाण जैसे बुनियादी KYC दस्तावेज हैं?",
     "Yes, I have them ready": "हां, मेरे पास तैयार हैं",
     "I have some documents": "मेरे पास कुछ दस्तावेज हैं",
