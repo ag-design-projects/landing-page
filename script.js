@@ -110,12 +110,74 @@ document.querySelectorAll("[data-tab]").forEach((button) => {
   });
 });
 
-document.querySelectorAll(".locator-tabs button").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".locator-tabs button").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
+const locatorFilters = [...document.querySelectorAll("[data-locator-filter]")];
+const mapMarkers = [...document.querySelectorAll("[data-map-marker]")];
+const locatorSummary = document.querySelector("[data-locator-summary]");
+const locatorDetails = {
+  branch: {
+    label: "Branch",
+    title: "Nearest branch in your area is 1.2 km away",
+    detail: "MG Road Branch, Bengaluru - Open until 4:00 PM"
+  },
+  atm: {
+    label: "ATM",
+    title: "Nearest ATM in your area is 750 m away",
+    detail: "SBI ATM, Church Street - Available 24 hours"
+  },
+  csp: {
+    label: "CSP",
+    title: "Nearest CSP in your area is 1.8 km away",
+    detail: "SBI Customer Service Point, Ashok Nagar - Open until 6:00 PM"
+  },
+  locker: {
+    label: "Locker",
+    title: "Nearest locker facility is 2.4 km away",
+    detail: "SBI Residency Road Branch - Subject to availability"
+  }
+};
+
+function updateLocatorMap() {
+  if (!locatorFilters.length) return;
+  const selectedTypes = locatorFilters
+    .filter((filter) => filter.getAttribute("aria-pressed") === "true")
+    .map((filter) => filter.dataset.locatorFilter);
+
+  mapMarkers.forEach((marker) => {
+    marker.hidden = !selectedTypes.includes(marker.dataset.mapMarker);
+  });
+
+  if (!locatorSummary) return;
+  const primaryType = selectedTypes[0];
+  if (!primaryType) {
+    const title = document.createElement("b");
+    title.textContent = "Select a service to view nearby SBI locations";
+    const detail = document.createElement("small");
+    detail.textContent = "Choose Branch, ATM, CSP or Locker above.";
+    locatorSummary.replaceChildren(title, detail);
+    return;
+  }
+
+  const primary = locatorDetails[primaryType];
+  const title = document.createElement("b");
+  title.textContent = selectedTypes.length > 1
+    ? `${selectedTypes.length} SBI services selected near you`
+    : primary.title;
+  const detail = document.createElement("small");
+  detail.textContent = selectedTypes.length > 1
+    ? selectedTypes.map((type) => locatorDetails[type].label).join(", ")
+    : primary.detail;
+  locatorSummary.replaceChildren(title, detail);
+}
+
+locatorFilters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    const isSelected = filter.getAttribute("aria-pressed") === "true";
+    filter.setAttribute("aria-pressed", String(!isSelected));
+    filter.classList.toggle("active", !isSelected);
+    updateLocatorMap();
   });
 });
+updateLocatorMap();
 
 const dialog = document.querySelector(".scheme-dialog");
 const schemeSection = document.querySelector(".schemes");
