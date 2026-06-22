@@ -449,6 +449,24 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   display: none;
 }
 
+.service-progress {
+  width: min(180px, 42vw);
+  height: 3px;
+  border-radius: 999px;
+  background: rgb(41 32 117 / .1);
+  overflow: hidden;
+}
+
+.service-progress span {
+  display: block;
+  width: 18%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--sbi-cyan), var(--sbi-blue));
+  transform-origin: left center;
+  transition: width 180ms var(--ease-out-strong);
+}
+
 .service-card {
   position: relative;
   display: grid;
@@ -484,38 +502,111 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   transition: transform var(--motion-standard) var(--ease-out-strong);
 }
 
-.service-card > .lucide {
+.service-card > .lucide,
+.service-logo {
   position: relative;
   z-index: 1;
   flex: 0 0 auto;
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 16px;
   background: white;
   color: var(--sbi-blue);
-  padding: 12px;
   box-shadow: inset 0 0 0 1px var(--primary-blue-20), 0 10px 22px rgb(0 169 224 / .12);
+}
+
+.service-card > .lucide {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
   stroke-width: 1.8;
 }
 
-.service-card span {
+.service-logo {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.service-logo img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.service-logo strong,
+.service-logo em {
+  display: block;
+  font-style: normal;
+  line-height: 1;
+}
+
+.logo-yono {
+  background: linear-gradient(135deg, #292075, #5d2290);
+  color: white;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .18), 0 10px 22px rgb(41 32 117 / .18);
+}
+
+.logo-yono strong {
+  font-size: 17px;
+  letter-spacing: -.04em;
+}
+
+.logo-yono em {
+  margin-top: 3px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.logo-sbi-online,
+.logo-sbi-service {
+  grid-template-rows: 24px auto;
+  gap: 4px;
+}
+
+.logo-sbi-online em,
+.logo-sbi-service em {
+  color: var(--primary-purple);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+
+.logo-whatsapp {
+  border-radius: 16px;
+  background: #25d366;
+  color: white;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22), 0 10px 22px rgb(37 211 102 / .2);
+}
+
+.logo-whatsapp strong {
+  max-width: 42px;
+  font-size: 10px;
+  line-height: 1.05;
+  text-align: center;
+  letter-spacing: -.03em;
+}
+
+.service-card > span:not(.service-logo) {
   position: relative;
   z-index: 1;
   align-self: end;
 }
 
-.service-card b,
-.service-card small {
+.service-card > span:not(.service-logo) b,
+.service-card > span:not(.service-logo) small {
   display: block;
 }
 
-.service-card b {
+.service-card > span:not(.service-logo) b {
   color: var(--sbi-blue);
   font-size: clamp(17px, 1.5vw, 21px);
   line-height: 1.12;
 }
 
-.service-card small {
+.service-card > span:not(.service-logo) small {
   max-width: 18ch;
   margin-top: 8px;
   color: var(--muted);
@@ -657,16 +748,18 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   background: var(--support-image) center / contain no-repeat;
 }
 .help-whatsapp-card .support-visual::after {
-  inset: -46px -58px -32px -92px;
-  background-position: 42% 50%;
+  inset: -54px -76px -40px -110px;
+  background-position: 39% 50%;
 }
 .help-branch-card .support-visual::after {
-  inset: -24px -20px -10px -54px;
-  background-position: 62% 50%;
+  inset: -104px -96px -34px -130px;
+  background-size: 340px auto;
+  background-position: 53% 75%;
 }
 .help-care-card .support-visual::after {
-  inset: -26px -28px -8px -48px;
-  background-position: 52% 50%;
+  inset: -64px -42px -6px -78px;
+  background-size: 250px auto;
+  background-position: 48% 28%;
 }
 .help .help-action-card:hover,
 .help .help-action-card:focus-visible {
@@ -1713,6 +1806,23 @@ body {
 
   .service-card {
     padding: 16px;
+  }
+
+  .help-whatsapp-card .support-visual::after {
+    inset: -42px -58px -30px -86px;
+    background-position: 40% 50%;
+  }
+
+  .help-branch-card .support-visual::after {
+    inset: -84px -72px -26px -104px;
+    background-size: 292px auto;
+    background-position: 54% 74%;
+  }
+
+  .help-care-card .support-visual::after {
+    inset: -50px -34px -4px -66px;
+    background-size: 222px auto;
+    background-position: 48% 30%;
   }
 }
 

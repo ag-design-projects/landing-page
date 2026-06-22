@@ -113,6 +113,16 @@ document.querySelectorAll("[data-tab]").forEach((button) => {
 const servicesCarousel = document.querySelector("[data-services-carousel]");
 const servicesPrev = document.querySelector("[data-services-prev]");
 const servicesNext = document.querySelector("[data-services-next]");
+const servicesProgress = document.querySelector("[data-services-progress]");
+
+function updateServicesProgress() {
+  if (!servicesCarousel || !servicesProgress) return;
+  const maxScroll = servicesCarousel.scrollWidth - servicesCarousel.clientWidth;
+  const visibleRatio = servicesCarousel.clientWidth / servicesCarousel.scrollWidth;
+  const scrollRatio = maxScroll > 0 ? servicesCarousel.scrollLeft / maxScroll : 0;
+  const progressWidth = Math.min(100, Math.max(18, (visibleRatio + scrollRatio * (1 - visibleRatio)) * 100));
+  servicesProgress.style.width = `${progressWidth}%`;
+}
 
 function scrollServices(direction) {
   if (!servicesCarousel) return;
@@ -127,6 +137,9 @@ function scrollServices(direction) {
 
 servicesPrev?.addEventListener("click", () => scrollServices(-1));
 servicesNext?.addEventListener("click", () => scrollServices(1));
+servicesCarousel?.addEventListener("scroll", updateServicesProgress, { passive: true });
+window.addEventListener("resize", updateServicesProgress);
+updateServicesProgress();
 
 const loanProfiles = {
   home: { amount: 2500000, rate: 8.5, tenure: 15 },
