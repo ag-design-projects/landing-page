@@ -258,19 +258,18 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .visit-segment .selected { background: var(--primary); color: var(--primary-foreground); box-shadow: 0 8px 20px rgb(41 32 117 / .22); }
 
 .saathi { position: relative; z-index: 5; isolation: isolate; margin-block: calc(-1 * var(--saathi-hero-overlap)) 0; display: block; width: min(1000px, calc(100% - 48px)); border: 1px solid var(--primary-blue-20); border-radius: var(--radius-panel); padding: clamp(24px, 3vw, 34px); background: rgb(255 255 255 / .98); color: var(--foreground); overflow: hidden; box-shadow: var(--shadow-floating); }
-.sia-identity { display: grid; grid-template-columns: 1fr; align-items: center; gap: 0; min-height: 250px; transition: grid-template-columns 260ms var(--ease-out-strong), gap 260ms var(--ease-out-strong); }
+.sia-heading-lockup { display: grid; grid-template-columns: 1fr; align-items: center; gap: 0; min-height: 170px; transition: grid-template-columns 260ms var(--ease-out-strong), gap 260ms var(--ease-out-strong), min-height 260ms var(--ease-out-strong); }
 .sia-mascot { position: relative; width: clamp(124px, 15vw, 166px); aspect-ratio: 1; margin: 0 auto; border-radius: 50%; background: radial-gradient(circle at 50% 45%, rgb(216 247 255 / .72), rgb(202 238 248 / .28) 46%, transparent 70%); transform: translateX(0) scale(1.06); transition: transform 280ms var(--ease-out-strong), margin 280ms var(--ease-out-strong); }
 .sia-mascot::before { content: ""; position: absolute; inset: -28%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgb(18 168 224 / .2), transparent 66%); filter: blur(12px); }
 .sia-mascot svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 22px 34px rgb(0 61 118 / .2)); }
 .saathi h2 { color: var(--heading); text-align: center; font-size: clamp(28px, 3.2vw, 42px); line-height: 1.08; letter-spacing: 0; }
 .saathi p { max-width: 680px; margin: 10px auto 0; color: var(--muted); text-align: center; font-size: 16px; }
-.saathi-copy { min-width: 0; max-width: 840px; margin: 0 auto; opacity: 0; visibility: hidden; transform: translateY(10px); filter: blur(2px); transition: opacity 220ms var(--ease-standard), visibility 220ms var(--ease-standard), transform 260ms var(--ease-out-strong), filter 260ms var(--ease-out-strong); }
-.saathi.is-revealed .sia-identity { grid-template-columns: minmax(160px, .28fr) minmax(0, 1fr); gap: clamp(18px, 4vw, 42px); min-height: 0; }
+.sia-heading-copy { min-width: 0; opacity: 0; visibility: hidden; transform: translateY(10px); filter: blur(2px); transition: opacity 220ms var(--ease-standard), visibility 220ms var(--ease-standard), transform 260ms var(--ease-out-strong), filter 260ms var(--ease-out-strong); }
+.saathi-copy { min-width: 0; max-width: 840px; margin: 0 auto; }
+.saathi.is-revealed .sia-heading-lockup { grid-template-columns: minmax(150px, .26fr) minmax(0, 1fr); gap: clamp(18px, 4vw, 42px); min-height: 0; margin-bottom: 6px; }
 .saathi.is-revealed .sia-mascot { margin: 0; transform: translateX(0) scale(.92); }
-.saathi.is-revealed .saathi-copy { opacity: 1; visibility: visible; transform: translateY(0); filter: blur(0); transition-delay: 80ms; }
-.saathi.is-revealed h2, .saathi.is-revealed p, .saathi.is-revealed small { text-align: left; margin-inline: 0; }
-.saathi.is-revealed .chips { justify-content: flex-start; }
-.saathi.is-revealed .ai-search-row { margin-inline: 0; }
+.saathi.is-revealed .sia-heading-copy { opacity: 1; visibility: visible; transform: translateY(0); filter: blur(0); transition-delay: 80ms; }
+.saathi.is-revealed .sia-heading-copy h2, .saathi.is-revealed .sia-heading-copy p { text-align: left; margin-inline: 0; }
 .saathi small { display: block; margin-top: 12px; color: var(--muted); text-align: center; }
 .tab-panel { display: none; margin-top: 18px; }
 .tab-panel.active { display: block; }
@@ -330,19 +329,27 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   .schemes.expanded .extra-scheme { opacity: 0; transform: translateY(8px); filter: blur(2px); }
 }
 
+.loans { position: relative; isolation: isolate; overflow: hidden; color: white; background: linear-gradient(90deg, rgb(0 0 0 / .72), rgb(0 61 118 / .72)), url("https://sbi.bank.in/documents/16012/52964925/SBI_Loan-Repayment_Digital_Web-22.05.2025-1820x831.jpg") center / cover; padding-block: var(--space-section); }
+.loans::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 82% 18%, rgb(18 168 224 / .28), transparent 32%); }
+.loans .section-head h2, .loans .section-head p { color: white; }
+.loans .section-head p { color: rgb(238 238 246 / .86); }
 .loan-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .42fr); gap: 22px; align-items: stretch; }
-.emi-calculator, .rates-panel { border: 1px solid var(--line); border-radius: var(--radius-panel); background: white; box-shadow: var(--shadow-card); padding: clamp(22px, 3vw, 30px); }
+.emi-calculator, .rates-panel { border: 1px solid rgb(255 255 255 / .24); border-radius: var(--radius-panel); background: rgb(255 255 255 / .94); box-shadow: 0 24px 60px rgb(0 0 0 / .22); padding: clamp(22px, 3vw, 30px); backdrop-filter: blur(14px); }
 .loan-type-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
 .loan-type-row button { background: var(--primary-blue-10); color: var(--sbi-blue); padding: 0 16px; }
 .loan-type-row button.active, .loan-type-row button[aria-pressed="true"] { background: var(--sbi-blue); color: white; box-shadow: 0 12px 26px rgb(41 32 117 / .16); }
-.emi-fields { display: grid; gap: 18px; }
-.emi-fields label { display: grid; grid-template-columns: 1fr auto; gap: 8px 18px; color: var(--heading); font-weight: 800; }
+.emi-fields { display: grid; gap: 22px; }
+.emi-fields label { display: grid; grid-template-columns: 1fr minmax(132px, auto); gap: 12px 18px; color: var(--heading); font-weight: 800; }
 .emi-fields input { grid-column: 1 / -1; width: 100%; accent-color: var(--sbi-cyan); }
-.emi-fields span { color: var(--sbi-blue); font-weight: 900; }
+.emi-fields span { justify-self: end; min-width: 132px; border: 1px solid var(--primary-blue-20); border-radius: 999px; background: white; color: var(--sbi-blue); padding: 8px 12px; text-align: right; font-weight: 900; }
 .emi-result { margin-top: 24px; border-radius: var(--radius-card); background: linear-gradient(135deg, var(--primary-blue-10), white); border: 1px solid var(--primary-blue-20); padding: 20px; display: grid; gap: 4px; }
 .emi-result span, .rates-panel-head span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .emi-result strong { color: var(--sbi-blue); font-size: clamp(32px, 4vw, 48px); line-height: 1; }
 .emi-result small { color: var(--muted); line-height: 1.5; }
+.emi-breakup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 6px; }
+.emi-breakup b { display: grid; gap: 4px; border-radius: 12px; background: white; border: 1px solid var(--primary-blue-20); padding: 10px; }
+.emi-breakup b span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+.emi-breakup b strong { color: var(--heading); font-size: 15px; line-height: 1.2; }
 .rates-panel { display: grid; gap: 10px; align-content: start; background: linear-gradient(180deg, var(--sbi-blue), #003d76); color: white; }
 .rates-panel-head { display: grid; gap: 4px; margin-bottom: 8px; }
 .rates-panel-head span { color: rgb(238 238 246 / .82); }
@@ -394,7 +401,7 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .sbi-ring-art img { position: absolute; right: -190px; bottom: -190px; width: clamp(500px, 46vw, 720px); max-width: none; opacity: .24; filter: drop-shadow(0 34px 70px rgb(0 169 224 / .28)); }
 .sbi-ring-art::before { content: ""; position: absolute; right: 6%; bottom: 16%; width: 34%; aspect-ratio: 1 / 1; border-radius: 50%; background: rgb(0 181 239 / .18); filter: blur(30px); }
 
-.help-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 24px; }
+.help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
 
 .yono { overflow: hidden; background: var(--primary-purple); margin-block: var(--space-section-tight); }
 .yono img { width: 100%; min-height: clamp(340px, 44vw, 560px); object-fit: cover; object-position: center; }
@@ -409,9 +416,12 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .help::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgb(0 0 0 / 0), rgb(0 0 0 / .08)); pointer-events: none; }
 .help > .wrap { position: relative; z-index: 2; }
 .help h2, .help p, .help h3 { color: white; }
-.help .support-card { display: grid; align-content: start; gap: 9px; min-height: 148px; background: rgb(255 255 255 / .1); border: 1px solid rgb(255 255 255 / .28); border-radius: var(--radius-card); padding: 22px; box-shadow: none; overflow: hidden; color: white; text-decoration: none; }
-.help .support-card > .lucide { width: 28px; height: 28px; color: var(--primary-blue-10); stroke-width: 1.8; }
-.help .support-card p { color: rgb(238 238 246 / .9); margin-bottom: 0; }
+.help .image-support-card { position: relative; display: grid; align-items: end; min-height: 245px; background: linear-gradient(180deg, rgb(0 0 0 / .08), rgb(0 0 0 / .54)), var(--support-image) center / cover; border: 1px solid rgb(255 255 255 / .22); border-radius: var(--radius-card); padding: 18px; box-shadow: none; overflow: hidden; color: var(--sbi-blue); text-decoration: none; }
+.support-copy { display: grid; gap: 7px; border-radius: 14px; background: rgb(255 255 255 / .9); color: var(--sbi-blue); padding: 16px; box-shadow: 0 16px 34px rgb(0 0 0 / .18); backdrop-filter: blur(10px); }
+.support-copy .lucide { width: 26px; height: 26px; color: var(--primary-blue); stroke-width: 1.8; }
+.support-copy small { color: var(--muted); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+.help .support-copy h3 { color: var(--sbi-blue); }
+.help .support-copy p { color: var(--muted); margin-bottom: 0; line-height: 1.45; }
 .support-card { transition: background-color var(--motion-standard) var(--ease-standard), border-color var(--motion-standard) var(--ease-standard), transform var(--motion-standard) var(--ease-out-strong); }
 .support-card:hover, .support-card:focus-within { background: rgb(255 255 255 / .15); border-color: rgb(255 255 255 / .42); transform: translateY(-2px); }
 .footer { background: linear-gradient(180deg, white, var(--primary-purple-10)); border-top: 1px solid var(--line); padding-block: var(--space-section-tight); }
@@ -538,11 +548,9 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   .hero-controls { margin-bottom: 14px; }
   .hero-slide::after { background: rgb(0 0 0 / .62); }
   .visit-choice, .saathi, .scheme-grid, .loan-panel, .locator, .why-sbi, .yono, .footer-grid { grid-template-columns: 1fr; }
-  .saathi.is-revealed .sia-identity { grid-template-columns: 1fr; gap: 16px; }
+  .saathi.is-revealed .sia-heading-lockup { grid-template-columns: 1fr; gap: 16px; }
   .saathi.is-revealed .sia-mascot { margin: 0 auto; transform: scale(.9); }
-  .saathi.is-revealed h2, .saathi.is-revealed p, .saathi.is-revealed small { text-align: center; margin-inline: auto; }
-  .saathi.is-revealed .chips { justify-content: center; }
-  .saathi.is-revealed .ai-search-row { margin-inline: auto; }
+  .saathi.is-revealed .sia-heading-copy h2, .saathi.is-revealed .sia-heading-copy p { text-align: center; margin-inline: auto; }
   .scheme-grid, .help-grid, .footer-links { grid-template-columns: repeat(2, 1fr); }
   .sbi-ring-art { justify-self: stretch; min-height: 280px; }
   .sbi-ring-art img { right: -145px; bottom: -155px; width: 520px; }
@@ -578,7 +586,7 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   .actions a { width: 100%; max-width: 280px; white-space: normal; }
   .help { min-height: 470px; margin-top: calc(-1 * var(--saathi-help-overlap)); padding-block: calc(var(--saathi-help-overlap) + 40px) 88px; }
   .section-title { max-width: calc(100vw - 48px); }
-  .sia-identity { min-height: 218px; }
+  .sia-heading-lockup { min-height: 150px; }
   .saathi { width: auto; max-width: none; margin: calc(-1 * var(--saathi-hero-overlap)) 24px 0 16px; overflow: hidden; padding: 26px 18px; }
   .saathi-copy { max-width: 100%; }
   .saathi h2 { font-size: 30px; overflow-wrap: anywhere; }
@@ -596,6 +604,8 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   .scheme-grid, .help-grid, .footer-links { grid-template-columns: 1fr; }
   .loan-type-row { display: grid; grid-template-columns: repeat(2, 1fr); }
   .emi-fields label { grid-template-columns: 1fr; }
+  .emi-fields span { justify-self: stretch; text-align: left; }
+  .emi-breakup { grid-template-columns: 1fr; }
   .why-sbi { min-height: 0; padding: 24px; }
   .mini-stats { grid-template-columns: 1fr; }
   .sbi-ring-art { min-height: 220px; }

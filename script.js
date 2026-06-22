@@ -247,6 +247,9 @@ const emiAmountLabel = document.querySelector("[data-emi-amount-label]");
 const emiRateLabel = document.querySelector("[data-emi-rate-label]");
 const emiTenureLabel = document.querySelector("[data-emi-tenure-label]");
 const emiResult = document.querySelector("[data-emi-result]");
+const emiPrincipal = document.querySelector("[data-emi-principal]");
+const emiInterest = document.querySelector("[data-emi-interest]");
+const emiTotal = document.querySelector("[data-emi-total]");
 
 function formatRupees(value) {
   return `Rs. ${Math.round(value).toLocaleString("en-IN")}`;
@@ -265,6 +268,10 @@ function calculateEmi() {
   emiRateLabel.textContent = `${annualRate.toFixed(2)}% p.a.`;
   emiTenureLabel.textContent = `${emiTenure.value} ${Number(emiTenure.value) === 1 ? "year" : "years"}`;
   emiResult.textContent = formatRupees(emi);
+  const totalPayment = emi * months;
+  if (emiPrincipal) emiPrincipal.textContent = formatRupees(principal);
+  if (emiInterest) emiInterest.textContent = formatRupees(totalPayment - principal);
+  if (emiTotal) emiTotal.textContent = formatRupees(totalPayment);
 }
 
 function setLoanProfile(type) {
