@@ -1381,6 +1381,15 @@ body {
   padding: 12px;
 }
 
+.emi-fields label {
+  grid-template-columns: 1fr;
+}
+
+.emi-fields span {
+  justify-self: end;
+  text-align: right;
+}
+
 .rates-panel-head b {
   font-size: 24px;
 }
