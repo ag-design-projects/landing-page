@@ -23,6 +23,38 @@ function createIcon(name) {
   return icon;
 }
 
+function createSiaLogoMark() {
+  const mark = document.createElement("span");
+  mark.className = "sia-logo-mark";
+  mark.innerHTML = `
+    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="sia-fab-core" cx="50%" cy="48%" r="58%">
+          <stop offset="0" stop-color="#ffffff"/>
+          <stop offset=".42" stop-color="#d8f7ff"/>
+          <stop offset=".72" stop-color="#12a8e0"/>
+          <stop offset="1" stop-color="#292075"/>
+        </radialGradient>
+        <linearGradient id="sia-fab-ring" x1="8" y1="8" x2="56" y2="58">
+          <stop offset="0" stop-color="#7be7ff"/>
+          <stop offset=".48" stop-color="#00a9e0"/>
+          <stop offset="1" stop-color="#280071"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#sia-fab-ring)"/>
+      <circle cx="32" cy="32" r="20" fill="url(#sia-fab-core)"/>
+      <circle cx="32" cy="32" r="15" fill="none" stroke="#fff" stroke-width="2" opacity=".75"/>
+      <path d="M32 20a6 6 0 0 0-3.4 10.9L25 44h14l-3.6-13.1A6 6 0 0 0 32 20Z" fill="#fff"/>
+      <path d="M15 33c8-12 25-17 38-9M18 43c11 9 28 8 39-1" fill="none" stroke="#d8f7ff" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
+    </svg>`;
+  return mark;
+}
+
+function setSiaMark(target) {
+  if (!target) return;
+  target.replaceChildren(createSiaLogoMark());
+}
+
 function showSlide(index) {
   slideIndex = (index + slides.length) % slides.length;
   slides.forEach((slide, i) => {
@@ -92,6 +124,27 @@ document.addEventListener("visibilitychange", () => {
 
 onMotionPreferenceChange(startHeroAutoPlay);
 startHeroAutoPlay();
+
+const siaSection = document.querySelector("[data-sia-reveal]");
+
+function revealSiaSection() {
+  siaSection?.classList.add("is-revealed");
+}
+
+if (siaSection) {
+  if (motionQuery.matches) {
+    revealSiaSection();
+  } else {
+    const maybeRevealSia = () => {
+      const rect = siaSection.getBoundingClientRect();
+      if (window.scrollY > 80 && rect.top < window.innerHeight * 0.82) {
+        revealSiaSection();
+        window.removeEventListener("scroll", maybeRevealSia);
+      }
+    };
+    window.addEventListener("scroll", maybeRevealSia, { passive: true });
+  }
+}
 
 document.querySelectorAll(".visit-segment button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -178,6 +231,61 @@ locatorFilters.forEach((filter) => {
   });
 });
 updateLocatorMap();
+
+const loanProfiles = {
+  home: { amount: 2500000, rate: 8.5, tenure: 15 },
+  personal: { amount: 800000, rate: 11.15, tenure: 5 },
+  auto: { amount: 900000, rate: 8.85, tenure: 7 },
+  education: { amount: 1500000, rate: 8.15, tenure: 10 }
+};
+const loanTypeButtons = [...document.querySelectorAll("[data-loan-type]")];
+const rateCards = [...document.querySelectorAll("[data-rate-card]")];
+const emiAmount = document.querySelector("[data-emi-amount]");
+const emiRate = document.querySelector("[data-emi-rate]");
+const emiTenure = document.querySelector("[data-emi-tenure]");
+const emiAmountLabel = document.querySelector("[data-emi-amount-label]");
+const emiRateLabel = document.querySelector("[data-emi-rate-label]");
+const emiTenureLabel = document.querySelector("[data-emi-tenure-label]");
+const emiResult = document.querySelector("[data-emi-result]");
+
+function formatRupees(value) {
+  return `Rs. ${Math.round(value).toLocaleString("en-IN")}`;
+}
+
+function calculateEmi() {
+  if (!emiAmount || !emiRate || !emiTenure || !emiResult) return;
+  const principal = Number(emiAmount.value);
+  const annualRate = Number(emiRate.value);
+  const months = Number(emiTenure.value) * 12;
+  const monthlyRate = annualRate / 12 / 100;
+  const emi = monthlyRate === 0
+    ? principal / months
+    : (principal * monthlyRate * ((1 + monthlyRate) ** months)) / (((1 + monthlyRate) ** months) - 1);
+  emiAmountLabel.textContent = formatRupees(principal);
+  emiRateLabel.textContent = `${annualRate.toFixed(2)}% p.a.`;
+  emiTenureLabel.textContent = `${emiTenure.value} ${Number(emiTenure.value) === 1 ? "year" : "years"}`;
+  emiResult.textContent = formatRupees(emi);
+}
+
+function setLoanProfile(type) {
+  const profile = loanProfiles[type];
+  if (!profile || !emiAmount || !emiRate || !emiTenure) return;
+  emiAmount.value = profile.amount;
+  emiRate.value = profile.rate;
+  emiTenure.value = profile.tenure;
+  loanTypeButtons.forEach((button) => {
+    const active = button.dataset.loanType === type;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  rateCards.forEach((card) => card.classList.toggle("active", card.dataset.rateCard === type));
+  calculateEmi();
+}
+
+loanTypeButtons.forEach((button) => button.addEventListener("click", () => setLoanProfile(button.dataset.loanType)));
+rateCards.forEach((card) => card.addEventListener("click", () => setLoanProfile(card.dataset.rateCard)));
+[emiAmount, emiRate, emiTenure].forEach((input) => input?.addEventListener("input", calculateEmi));
+calculateEmi();
 
 const dialog = document.querySelector(".scheme-dialog");
 const schemeSection = document.querySelector(".schemes");
@@ -311,7 +419,8 @@ function showSchemeDetails({ skipped = false, completed = false, score = null } 
   dialogModeLabel.textContent = translateUI("Scheme details");
   quizView.hidden = true;
   detailsView.hidden = false;
-  checkAgainButton.hidden = completed || !skipped;
+  const alreadyChecked = completed || activeSchemeCard?.classList.contains("has-eligibility");
+  checkAgainButton.hidden = alreadyChecked || !skipped;
   if (score === null) {
     eligibilityResult.hidden = true;
     return;
@@ -396,6 +505,7 @@ const fabButton = document.querySelector(".floating");
 const fabPrompts = document.querySelector(".fab-prompts");
 
 if (fabCluster && fabButton && fabPrompts) {
+  setSiaMark(fabButton.querySelector(".fab-icon"));
   fabButton.addEventListener("click", () => {
     const isOpen = fabCluster.classList.toggle("open");
     const fabIcon = fabButton.querySelector(".fab-icon");
@@ -404,7 +514,12 @@ if (fabCluster && fabButton && fabPrompts) {
     fabText.classList.toggle("is-hidden", isOpen);
     fabButton.setAttribute("aria-expanded", String(isOpen));
     fabButton.setAttribute("aria-label", isOpen ? "Close SIA prompts" : "Open SIA prompts");
-    fabIcon.replaceChildren(createIcon(isOpen ? "x" : "sparkles"));
+    if (isOpen) {
+      fabIcon.replaceChildren(createIcon("x"));
+      window.lucide?.createIcons();
+    } else {
+      setSiaMark(fabIcon);
+    }
     fabText.hidden = isOpen;
     fabText.textContent = isOpen ? "" : "Ask SIA";
     fabPrompts.setAttribute("aria-hidden", String(!isOpen));

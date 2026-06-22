@@ -234,8 +234,8 @@
         </article>
       </section>
 
-      <section class="saathi wrap">
-        <div class="saathi-copy">
+      <section class="saathi wrap" data-sia-reveal>
+        <div class="sia-identity">
           <div class="sia-mascot" aria-hidden="true">
             <svg viewBox="0 0 220 220" role="img">
               <defs>
@@ -273,6 +273,7 @@
               <path d="M174 54l4 9 9 4-9 4-4 9-4-9-9-4 9-4 4-9Z" fill="#d8f7ff" opacity=".86"/>
             </svg>
           </div>
+          <div class="saathi-copy">
           <h2>Meet SIA - your banking assistant</h2>
           <p>Type, speak, or tap a common question. SIA understands 12+ Indian languages and helps you bank with confidence.</p>
           <div class="prompt-row ai-search-row">
@@ -286,6 +287,7 @@
             <button>Show nearest SBI branch</button>
           </div>
           <small>AI guidance is for help only. Please confirm final terms with SBI.</small>
+          </div>
         </div>
       </section>
 
@@ -347,6 +349,45 @@
           </article>
         </div>
         <div class="scheme-actions"><button class="scheme-toggle" type="button" data-scheme-toggle><span>View more</span><i data-lucide="chevron-down" aria-hidden="true"></i></button></div>
+      </section>
+
+      <section class="loans wrap" aria-labelledby="loans-title">
+        <div class="section-head">
+          <div>
+            <h2 id="loans-title">Loans and EMI planner</h2>
+            <p>Estimate monthly payments and compare popular SBI loan categories before you apply.</p>
+          </div>
+        </div>
+        <div class="loan-panel">
+          <article class="emi-calculator">
+            <div class="loan-type-row" aria-label="Loan type">
+              <button class="active" type="button" data-loan-type="home" aria-pressed="true">Home</button>
+              <button type="button" data-loan-type="personal" aria-pressed="false">Personal</button>
+              <button type="button" data-loan-type="auto" aria-pressed="false">Auto</button>
+              <button type="button" data-loan-type="education" aria-pressed="false">Education</button>
+            </div>
+            <div class="emi-fields">
+              <label>Loan amount<input type="range" min="100000" max="15000000" step="50000" value="2500000" data-emi-amount><span data-emi-amount-label>Rs. 25,00,000</span></label>
+              <label>Interest rate<input type="range" min="7" max="18" step="0.05" value="8.5" data-emi-rate><span data-emi-rate-label>8.50% p.a.</span></label>
+              <label>Tenure<input type="range" min="1" max="30" step="1" value="15" data-emi-tenure><span data-emi-tenure-label>15 years</span></label>
+            </div>
+            <div class="emi-result">
+              <span>Estimated EMI</span>
+              <strong data-emi-result>Rs. 24,618</strong>
+              <small>Indicative estimate. Final terms depend on eligibility, documents and current SBI policy.</small>
+            </div>
+          </article>
+          <aside class="rates-panel" aria-label="Indicative loan rates">
+            <div class="rates-panel-head">
+              <span>Indicative rates</span>
+              <b>Popular loans</b>
+            </div>
+            <button class="rate-row active" type="button" data-rate-card="home"><span><i data-lucide="home" aria-hidden="true"></i>Home Loan</span><b>8.50%</b><small>Up to 30 years</small></button>
+            <button class="rate-row" type="button" data-rate-card="personal"><span><i data-lucide="badge-indian-rupee" aria-hidden="true"></i>Personal Loan</span><b>11.15%</b><small>Up to 6 years</small></button>
+            <button class="rate-row" type="button" data-rate-card="auto"><span><i data-lucide="car" aria-hidden="true"></i>Auto Loan</span><b>8.85%</b><small>Up to 7 years</small></button>
+            <button class="rate-row" type="button" data-rate-card="education"><span><i data-lucide="graduation-cap" aria-hidden="true"></i>Education Loan</span><b>8.15%</b><small>Flexible moratorium</small></button>
+          </aside>
+        </div>
       </section>
 
       <section class="locator wrap" id="locator">
@@ -445,7 +486,7 @@
         <button type="button">Nearest SBI branch</button>
         <button type="button">I have another question</button>
       </div>
-      <button class="floating" type="button" aria-label="Open SIA prompts" aria-expanded="false"><span class="fab-icon"><i data-lucide="sparkles" aria-hidden="true"></i></span><span class="fab-text">Ask SIA</span></button>
+      <button class="floating" type="button" aria-label="Open SIA prompts" aria-expanded="false"><span class="fab-icon sia-fab-mark" aria-hidden="true"></span><span class="fab-text">Ask SIA</span></button>
     </div>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="script.js"></script>
