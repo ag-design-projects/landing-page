@@ -1312,7 +1312,10 @@ body {
 }
 
 .ai-search-row {
-  border: 1px solid transparent;
+  --moving-border-radius: 999px;
+  --moving-border-size: 2px;
+  border: 1px solid var(--grey-30);
+  border-radius: var(--moving-border-radius);
   isolation: isolate;
   overflow: hidden;
   background: white;
@@ -1325,22 +1328,23 @@ body {
 .ai-search-row::after {
   content: "";
   position: absolute;
-  inset: -180%;
+  inset: -160%;
   z-index: 0;
   background:
     conic-gradient(
       from 0deg,
-      transparent 0deg,
-      transparent 284deg,
-      var(--primary-blue-20) 300deg,
-      var(--sbi-cyan) 316deg,
-      var(--sbi-indigo) 330deg,
-      var(--primary-blue) 344deg,
-      transparent 360deg
+      transparent 0turn,
+      transparent .78turn,
+      var(--primary-blue-20) .815turn,
+      var(--sbi-cyan) .845turn,
+      var(--primary-blue) .875turn,
+      var(--sbi-indigo) .905turn,
+      transparent .945turn,
+      transparent 1turn
     );
   opacity: 1;
   pointer-events: none;
-  animation: sia-border-glow-spin 6.8s linear infinite;
+  animation: sia-border-glow-spin 7.2s linear infinite;
 }
 
 .ai-search-row:hover,
@@ -1350,8 +1354,9 @@ body {
 }
 
 .ai-search-row::before {
-  inset: 3px;
+  inset: var(--moving-border-size);
   z-index: 1;
+  box-shadow: 0 0 0 1px var(--grey-30);
 }
 
 .ai-search-row input,
