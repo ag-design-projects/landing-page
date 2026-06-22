@@ -1314,58 +1314,53 @@ body {
 .ai-search-row {
   --moving-border-radius: 999px;
   --moving-border-size: 2px;
-  border: 1px solid var(--grey-30);
+  --moving-border-segment: clamp(76px, 16%, 118px);
+  border: 0;
   border-radius: var(--moving-border-radius);
   isolation: isolate;
   overflow: hidden;
-  background: white;
+  background: transparent;
   box-shadow: 0 10px 28px rgb(63 63 63 / .08);
   transition:
-    border-color var(--motion-standard) var(--ease-standard),
     box-shadow var(--motion-standard) var(--ease-standard);
 }
 
 .ai-search-row::after {
   content: "";
   position: absolute;
-  inset: -160%;
-  z-index: 0;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0turn,
-      transparent .78turn,
-      var(--primary-blue-20) .815turn,
-      var(--sbi-cyan) .845turn,
-      var(--primary-blue) .875turn,
-      var(--sbi-indigo) .905turn,
-      transparent .945turn,
-      transparent 1turn
-    );
-  opacity: 1;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: var(--moving-border-segment);
+  height: var(--moving-border-size);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--sbi-cyan), var(--primary-blue), var(--sbi-indigo), transparent);
+  filter: drop-shadow(0 0 7px rgb(18 168 224 / .44));
+  offset-distance: 0%;
+  offset-path: inset(1px round var(--moving-border-radius));
+  offset-rotate: auto;
   pointer-events: none;
-  animation: sia-border-glow-spin 7.2s linear infinite;
+  animation: sia-border-runner 5.6s linear infinite;
 }
 
 .ai-search-row:hover,
 .ai-search-row:focus-within {
-  border-color: transparent;
   transform: none;
 }
 
 .ai-search-row::before {
   inset: var(--moving-border-size);
-  z-index: 1;
-  box-shadow: 0 0 0 1px var(--grey-30);
+  z-index: 2;
+  box-shadow: none;
 }
 
 .ai-search-row input,
 .ai-search-row button {
-  z-index: 2;
+  z-index: 3;
 }
 
-@keyframes sia-border-glow-spin {
-  to { transform: rotate(1turn); }
+@keyframes sia-border-runner {
+  to { offset-distance: 100%; }
 }
 
 .ai-search-row .saathi-voice {
