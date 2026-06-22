@@ -1413,29 +1413,33 @@ body {
 
 /* Keep the compact SIA card stitched between the hero and Need Help sections. */
 :root {
+  --saathi-hero-overlap-active: clamp(132px, 14vw, 176px);
   --saathi-help-overlap-active: clamp(76px, 8vw, 104px);
 }
 
 .saathi {
-  margin-block: calc(-1 * var(--saathi-hero-overlap)) calc(-1 * var(--saathi-help-overlap-active));
+  margin-block: calc(-1 * var(--saathi-hero-overlap-active)) calc(-1 * var(--saathi-help-overlap-active));
 }
 
 .help {
   margin-top: 0;
+  min-height: clamp(300px, 31vw, 390px);
   padding-top: calc(var(--saathi-help-overlap-active) + clamp(32px, 4vw, 48px));
 }
 
 @media (max-width: 620px) {
   :root {
+    --saathi-hero-overlap-active: 96px;
     --saathi-help-overlap-active: 72px;
   }
 
   .saathi {
-    margin: calc(-1 * var(--saathi-hero-overlap)) 16px calc(-1 * var(--saathi-help-overlap-active));
+    margin: calc(-1 * var(--saathi-hero-overlap-active)) 16px calc(-1 * var(--saathi-help-overlap-active));
   }
 
   .help {
     margin-top: 0;
+    min-height: 0;
     padding-top: calc(var(--saathi-help-overlap-active) + 38px);
   }
 }
