@@ -110,6 +110,24 @@ document.querySelectorAll("[data-tab]").forEach((button) => {
   });
 });
 
+const servicesCarousel = document.querySelector("[data-services-carousel]");
+const servicesPrev = document.querySelector("[data-services-prev]");
+const servicesNext = document.querySelector("[data-services-next]");
+
+function scrollServices(direction) {
+  if (!servicesCarousel) return;
+  const firstCard = servicesCarousel.querySelector(".service-card");
+  const cardWidth = firstCard?.getBoundingClientRect().width || 220;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  servicesCarousel.scrollBy({
+    left: direction * (cardWidth + 14),
+    behavior: reduceMotion ? "auto" : "smooth"
+  });
+}
+
+servicesPrev?.addEventListener("click", () => scrollServices(-1));
+servicesNext?.addEventListener("click", () => scrollServices(1));
+
 const loanProfiles = {
   home: { amount: 2500000, rate: 8.5, tenure: 15 },
   personal: { amount: 800000, rate: 11.15, tenure: 5 },
