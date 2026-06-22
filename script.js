@@ -23,38 +23,6 @@ function createIcon(name) {
   return icon;
 }
 
-function createSiaLogoMark() {
-  const mark = document.createElement("span");
-  mark.className = "sia-logo-mark";
-  mark.innerHTML = `
-    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-      <defs>
-        <radialGradient id="sia-fab-core" cx="50%" cy="48%" r="58%">
-          <stop offset="0" stop-color="#ffffff"/>
-          <stop offset=".42" stop-color="#d8f7ff"/>
-          <stop offset=".72" stop-color="#12a8e0"/>
-          <stop offset="1" stop-color="#292075"/>
-        </radialGradient>
-        <linearGradient id="sia-fab-ring" x1="8" y1="8" x2="56" y2="58">
-          <stop offset="0" stop-color="#7be7ff"/>
-          <stop offset=".48" stop-color="#00a9e0"/>
-          <stop offset="1" stop-color="#280071"/>
-        </linearGradient>
-      </defs>
-      <circle cx="32" cy="32" r="28" fill="url(#sia-fab-ring)"/>
-      <circle cx="32" cy="32" r="20" fill="url(#sia-fab-core)"/>
-      <circle cx="32" cy="32" r="15" fill="none" stroke="#fff" stroke-width="2" opacity=".75"/>
-      <path d="M32 20a6 6 0 0 0-3.4 10.9L25 44h14l-3.6-13.1A6 6 0 0 0 32 20Z" fill="#fff"/>
-      <path d="M15 33c8-12 25-17 38-9M18 43c11 9 28 8 39-1" fill="none" stroke="#d8f7ff" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
-    </svg>`;
-  return mark;
-}
-
-function setSiaMark(target) {
-  if (!target) return;
-  target.replaceChildren(createSiaLogoMark());
-}
-
 function showSlide(index) {
   slideIndex = (index + slides.length) % slides.length;
   slides.forEach((slide, i) => {
@@ -124,27 +92,6 @@ document.addEventListener("visibilitychange", () => {
 
 onMotionPreferenceChange(startHeroAutoPlay);
 startHeroAutoPlay();
-
-const siaSection = document.querySelector("[data-sia-reveal]");
-
-function revealSiaSection() {
-  siaSection?.classList.add("is-revealed");
-}
-
-if (siaSection) {
-  if (motionQuery.matches) {
-    revealSiaSection();
-  } else {
-    const maybeRevealSia = () => {
-      const rect = siaSection.getBoundingClientRect();
-      if (window.scrollY > 80 && rect.top < window.innerHeight * 0.82) {
-        revealSiaSection();
-        window.removeEventListener("scroll", maybeRevealSia);
-      }
-    };
-    window.addEventListener("scroll", maybeRevealSia, { passive: true });
-  }
-}
 
 document.querySelectorAll(".visit-segment button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -512,7 +459,6 @@ const fabButton = document.querySelector(".floating");
 const fabPrompts = document.querySelector(".fab-prompts");
 
 if (fabCluster && fabButton && fabPrompts) {
-  setSiaMark(fabButton.querySelector(".fab-icon"));
   fabButton.addEventListener("click", () => {
     const isOpen = fabCluster.classList.toggle("open");
     const fabIcon = fabButton.querySelector(".fab-icon");
@@ -525,7 +471,7 @@ if (fabCluster && fabButton && fabPrompts) {
       fabIcon.replaceChildren(createIcon("x"));
       window.lucide?.createIcons();
     } else {
-      setSiaMark(fabIcon);
+      fabIcon.replaceChildren(createIcon("sparkles"));
     }
     fabText.hidden = isOpen;
     fabText.textContent = isOpen ? "" : "Ask SIA";
@@ -1068,6 +1014,110 @@ if (softAuroraCanvas) {
 
   resizeSoftAurora();
   startSoftAurora();
+}
+
+const loanBeamsCanvas = document.querySelector(".loan-beams-canvas");
+
+if (loanBeamsCanvas) {
+  const loansSection = loanBeamsCanvas.closest(".loans");
+  const ctx = loanBeamsCanvas.getContext("2d", { alpha: true });
+  const beamPalette = ["#d8f7ff", "#7be7ff", "#00a9e0", "#12a8e0"];
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let frameId = null;
+  let isVisible = true;
+
+  function beamRgba(hex, alpha) {
+    const value = hex.replace("#", "");
+    const r = parseInt(value.slice(0, 2), 16);
+    const g = parseInt(value.slice(2, 4), 16);
+    const b = parseInt(value.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  function resizeLoanBeams() {
+    const rect = loansSection.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    width = Math.max(1, Math.round(rect.width));
+    height = Math.max(1, Math.round(rect.height));
+    loanBeamsCanvas.width = Math.round(width * dpr);
+    loanBeamsCanvas.height = Math.round(height * dpr);
+    loanBeamsCanvas.style.width = `${width}px`;
+    loanBeamsCanvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function drawBeam(time, index) {
+    const beamCount = 10;
+    const progress = ((time * 0.00018 * (1 + index * 0.04)) + index / beamCount) % 1;
+    const x = -width * 0.24 + progress * width * 1.48;
+    const y = height * (0.08 + index * 0.092);
+    const beamWidth = Math.max(54, width * (0.048 + index * 0.002));
+    const beamHeight = height * (1.05 + (index % 3) * 0.12);
+    const color = beamPalette[index % beamPalette.length];
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(-0.42);
+    const gradient = ctx.createLinearGradient(-beamWidth, 0, beamWidth, 0);
+    gradient.addColorStop(0, beamRgba(color, 0));
+    gradient.addColorStop(0.48, beamRgba(color, 0.15 + (index % 2) * 0.04));
+    gradient.addColorStop(0.54, beamRgba("#ffffff", 0.1));
+    gradient.addColorStop(1, beamRgba(color, 0));
+    ctx.fillStyle = gradient;
+    ctx.fillRect(-beamWidth, -beamHeight * 0.5, beamWidth * 2, beamHeight);
+    ctx.restore();
+  }
+
+  function drawLoanBeams(time = 0) {
+    if (!isVisible) return;
+    ctx.clearRect(0, 0, width, height);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "rgba(0, 19, 46, 0.2)";
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalCompositeOperation = "screen";
+    for (let i = 0; i < 10; i += 1) drawBeam(time, i);
+    ctx.globalCompositeOperation = "source-over";
+
+    const grainStep = 18;
+    ctx.fillStyle = "rgba(255,255,255,0.018)";
+    for (let x = 0; x < width; x += grainStep) {
+      for (let y = (x / grainStep) % 2 ? 8 : 0; y < height; y += grainStep) {
+        ctx.fillRect(x, y, 1, 1);
+      }
+    }
+
+    if (!motionQuery.matches) frameId = window.requestAnimationFrame(drawLoanBeams);
+  }
+
+  function startLoanBeams() {
+    window.cancelAnimationFrame(frameId);
+    drawLoanBeams();
+  }
+
+  function stopLoanBeams() {
+    window.cancelAnimationFrame(frameId);
+    frameId = null;
+  }
+
+  window.addEventListener("resize", () => {
+    resizeLoanBeams();
+    startLoanBeams();
+  });
+  onMotionPreferenceChange(startLoanBeams);
+
+  if ("IntersectionObserver" in window) {
+    const beamsObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) startLoanBeams();
+      else stopLoanBeams();
+    });
+    beamsObserver.observe(loansSection);
+  }
+
+  resizeLoanBeams();
+  startLoanBeams();
 }
 
 document.querySelectorAll("form").forEach((form) => {
