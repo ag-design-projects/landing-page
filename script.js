@@ -768,9 +768,9 @@ if (softAuroraCanvas) {
   }
 
   function drawSoftBand(time, layer, color, alpha, yOffset, amplitude) {
-    const phase = time * (0.00018 + layer * 0.00004);
-    const mouseShiftX = (easedMouse.x - 0.5) * 90;
-    const mouseShiftY = (easedMouse.y - 0.5) * 56;
+    const phase = time * (0.000045 + layer * 0.000012);
+    const mouseShiftX = (easedMouse.x - 0.5) * 18;
+    const mouseShiftY = (easedMouse.y - 0.5) * 12;
     const top = height * yOffset + mouseShiftY * (0.45 + layer * 0.12);
     const band = new Path2D();
     band.moveTo(-40, top);
@@ -797,18 +797,18 @@ if (softAuroraCanvas) {
 
   function drawSoftAurora(time = 0) {
     if (!isVisible || motionQuery.matches) return;
-    easedMouse.x += (mouse.x - easedMouse.x) * 0.045;
-    easedMouse.y += (mouse.y - easedMouse.y) * 0.045;
+    easedMouse.x += (mouse.x - easedMouse.x) * 0.012;
+    easedMouse.y += (mouse.y - easedMouse.y) * 0.012;
 
     ctx.clearRect(0, 0, width, height);
     ctx.globalCompositeOperation = "source-over";
     ctx.fillStyle = "#280071";
     ctx.fillRect(0, 0, width, height);
     ctx.globalCompositeOperation = "screen";
-    drawSoftBand(time, 0, colors[2], 0.4, 0.18, 54);
-    drawSoftBand(time, 1, colors[3], 0.32, 0.36, 82);
-    drawSoftBand(time, 2, colors[0], 0.45, 0.52, 96);
-    drawSoftBand(time, 3, colors[4], 0.14, 0.68, 66);
+    drawSoftBand(time, 0, colors[2], 0.16, 0.2, 24);
+    drawSoftBand(time, 1, colors[3], 0.12, 0.39, 34);
+    drawSoftBand(time, 2, colors[0], 0.18, 0.56, 42);
+    drawSoftBand(time, 3, colors[4], 0.05, 0.72, 28);
     ctx.globalCompositeOperation = "source-over";
 
     const vignette = ctx.createRadialGradient(width * 0.5, height * 0.28, height * 0.05, width * 0.5, height * 0.36, Math.max(width, height) * 0.72);
