@@ -738,7 +738,7 @@ const softAuroraCanvas = document.querySelector(".soft-aurora-canvas");
 if (softAuroraCanvas) {
   const helpSection = softAuroraCanvas.closest(".help");
   const ctx = softAuroraCanvas.getContext("2d", { alpha: true });
-  const colors = ["#292075", "#280071", "#00a9e0", "#12a8e0", "#caeef8"];
+  const colors = ["#292075", "#280071", "#00a9e0", "#12a8e0", "#7be7ff", "#d8f7ff"];
   const mouse = { x: 0.5, y: 0.5 };
   const easedMouse = { x: 0.5, y: 0.5 };
   let width = 0;
@@ -768,9 +768,9 @@ if (softAuroraCanvas) {
   }
 
   function drawSoftBand(time, layer, color, alpha, yOffset, amplitude) {
-    const phase = time * (0.000045 + layer * 0.000012);
-    const mouseShiftX = (easedMouse.x - 0.5) * 18;
-    const mouseShiftY = (easedMouse.y - 0.5) * 12;
+    const phase = time * (0.000075 + layer * 0.000018);
+    const mouseShiftX = (easedMouse.x - 0.5) * 26;
+    const mouseShiftY = (easedMouse.y - 0.5) * 18;
     const top = height * yOffset + mouseShiftY * (0.45 + layer * 0.12);
     const band = new Path2D();
     band.moveTo(-40, top);
@@ -797,24 +797,24 @@ if (softAuroraCanvas) {
 
   function drawSoftAurora(time = 0) {
     if (!isVisible || motionQuery.matches) return;
-    easedMouse.x += (mouse.x - easedMouse.x) * 0.012;
-    easedMouse.y += (mouse.y - easedMouse.y) * 0.012;
+    easedMouse.x += (mouse.x - easedMouse.x) * 0.018;
+    easedMouse.y += (mouse.y - easedMouse.y) * 0.018;
 
     ctx.clearRect(0, 0, width, height);
     ctx.globalCompositeOperation = "source-over";
     ctx.fillStyle = "#280071";
     ctx.fillRect(0, 0, width, height);
     ctx.globalCompositeOperation = "screen";
-    drawSoftBand(time, 0, colors[2], 0.16, 0.2, 24);
-    drawSoftBand(time, 1, colors[3], 0.12, 0.39, 34);
-    drawSoftBand(time, 2, colors[0], 0.18, 0.56, 42);
-    drawSoftBand(time, 3, colors[4], 0.05, 0.72, 28);
+    drawSoftBand(time, 0, colors[2], 0.34, 0.18, 38);
+    drawSoftBand(time, 1, colors[4], 0.22, 0.36, 54);
+    drawSoftBand(time, 2, colors[3], 0.28, 0.55, 62);
+    drawSoftBand(time, 3, colors[5], 0.1, 0.72, 42);
     ctx.globalCompositeOperation = "source-over";
 
     const vignette = ctx.createRadialGradient(width * 0.5, height * 0.28, height * 0.05, width * 0.5, height * 0.36, Math.max(width, height) * 0.72);
-    vignette.addColorStop(0, "rgba(255,255,255,0.05)");
-    vignette.addColorStop(0.42, "rgba(40,0,113,0.18)");
-    vignette.addColorStop(1, "rgba(0,0,0,0.36)");
+    vignette.addColorStop(0, "rgba(255,255,255,0.08)");
+    vignette.addColorStop(0.42, "rgba(40,0,113,0.1)");
+    vignette.addColorStop(1, "rgba(0,0,0,0.28)");
     ctx.fillStyle = vignette;
     ctx.fillRect(0, 0, width, height);
     frameId = window.requestAnimationFrame(drawSoftAurora);

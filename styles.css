@@ -362,11 +362,11 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .help { position: relative; z-index: 1; isolation: isolate; overflow: hidden; margin-top: calc(-1 * var(--saathi-help-overlap)); background: radial-gradient(circle at 16% 18%, rgb(18 168 224 / .24), transparent 36%), linear-gradient(145deg, #280071, #292075 58%, #003d76); color: white; min-height: clamp(330px, 34vw, 430px); padding-block: calc(var(--saathi-help-overlap) + clamp(32px, 4vw, 48px)) clamp(54px, 7vw, 82px); }
 .soft-aurora-canvas { position: absolute; inset: -1px; z-index: 0; width: calc(100% + 2px); height: calc(100% + 2px); display: block; pointer-events: auto; }
 .help::before { content: ""; position: absolute; inset: 0; z-index: 1; background:
-  radial-gradient(circle at 50% 20%, rgb(255 255 255 / .1), transparent 34%),
-  linear-gradient(180deg, rgb(40 0 113 / .18), rgb(40 0 113 / .78)),
-  linear-gradient(90deg, rgb(40 0 113 / .62), transparent 54%, rgb(0 61 118 / .42));
+  radial-gradient(circle at 50% 20%, rgb(255 255 255 / .16), transparent 34%),
+  linear-gradient(180deg, rgb(40 0 113 / .08), rgb(40 0 113 / .58)),
+  linear-gradient(90deg, rgb(40 0 113 / .42), transparent 54%, rgb(0 61 118 / .26));
   pointer-events: none; }
-.help::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgb(0 0 0 / .02), rgb(0 0 0 / .12)); pointer-events: none; }
+.help::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgb(0 0 0 / 0), rgb(0 0 0 / .08)); pointer-events: none; }
 .help > .wrap { position: relative; z-index: 2; }
 .help h2, .help p, .help h3 { color: white; }
 .help article { display: grid; align-content: start; gap: 9px; min-height: 148px; background: rgb(255 255 255 / .1); border: 1px solid rgb(255 255 255 / .28); border-radius: var(--radius-card); padding: 22px; box-shadow: none; overflow: hidden; }
@@ -756,7 +756,8 @@ body {
 
 .help {
   background:
-    radial-gradient(circle at 18% 18%, rgb(18 168 224 / .16), transparent 34%),
+    radial-gradient(circle at 18% 18%, rgb(18 168 224 / .28), transparent 36%),
+    radial-gradient(circle at 78% 28%, rgb(123 231 255 / .18), transparent 32%),
     linear-gradient(145deg, #280071, #292075 58%, #003d76);
 }
 
