@@ -420,24 +420,24 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .support-card:hover, .support-card:focus-within { background: rgb(255 255 255 / .15); border-color: rgb(255 255 255 / .42); transform: translateY(-2px); }
 .help .help-action-card {
   position: relative;
-  min-height: 112px;
+  min-height: 148px;
   display: flex;
   align-items: center;
   overflow: hidden;
   border: 1px solid var(--grey-30);
-  border-radius: 14px;
+  border-radius: 18px;
   background: var(--grey-0);
   color: var(--primary-purple);
-  padding: 17px 108px 17px 16px;
+  padding: 22px 172px 22px 22px;
   box-shadow: 0 12px 28px rgb(63 63 63 / .08);
   text-decoration: none;
 }
 .help .help-action-card .support-copy {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: grid;
   gap: 9px;
-  max-width: 220px;
+  max-width: 250px;
   padding: 0;
   border-radius: 0;
   background: transparent;
@@ -447,28 +447,49 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 }
 .help .help-action-card h3 {
   color: var(--primary-purple);
-  font-size: clamp(17px, 1.3vw, 20px);
+  font-size: clamp(20px, 1.55vw, 24px);
   line-height: 1.16;
   font-weight: 900;
 }
 .help .help-action-card p {
   color: var(--primary-purple);
-  font-size: 12px;
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
 }
 .support-visual {
   position: absolute;
-  right: -18px;
+  right: -34px;
   top: 50%;
-  width: 118px;
-  height: 118px;
+  width: 178px;
+  height: 178px;
   border-radius: 50%;
-  background:
-    var(--support-image) right center / auto 100% no-repeat,
-    var(--primary-purple-10);
-  box-shadow: inset 0 0 0 1px var(--primary-blue-20);
   transform: translateY(-50%);
   transition: transform var(--motion-standard) var(--ease-out-strong);
+}
+.support-visual::before,
+.support-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.support-visual::before {
+  z-index: 1;
+  border-radius: 50%;
+  background: var(--primary-blue-20);
+}
+.support-visual::after {
+  z-index: 2;
+  inset: -22px -18px -14px -48px;
+  background: var(--support-image) center / contain no-repeat;
+}
+.help-whatsapp-card .support-visual::after {
+  inset: -20px -22px -12px -54px;
+}
+.help-branch-card .support-visual::after {
+  inset: -26px -66px -8px -86px;
+}
+.help-care-card .support-visual::after {
+  inset: -52px -36px -18px -72px;
 }
 .help .help-action-card:hover,
 .help .help-action-card:focus-visible {
@@ -1295,8 +1316,7 @@ body {
   isolation: isolate;
   overflow: hidden;
   background: white;
-  box-shadow: 0 10px 28px rgb(63 63 63 / .08), 0 0 18px rgb(0 169 224 / .08);
-  animation: sia-prompt-glow-pulse 3.8s var(--ease-standard) infinite alternate;
+  box-shadow: 0 10px 28px rgb(63 63 63 / .08);
   transition:
     border-color var(--motion-standard) var(--ease-standard),
     box-shadow var(--motion-standard) var(--ease-standard);
@@ -1310,17 +1330,17 @@ body {
   background:
     conic-gradient(
       from 0deg,
-      var(--grey-30) 0deg,
-      var(--primary-blue-20) 54deg,
-      var(--sbi-cyan) 112deg,
-      var(--sbi-indigo) 178deg,
-      var(--primary-blue) 244deg,
-      var(--primary-blue-20) 308deg,
-      var(--grey-30) 360deg
+      transparent 0deg,
+      transparent 284deg,
+      var(--primary-blue-20) 300deg,
+      var(--sbi-cyan) 316deg,
+      var(--sbi-indigo) 330deg,
+      var(--primary-blue) 344deg,
+      transparent 360deg
     );
-  opacity: .95;
+  opacity: 1;
   pointer-events: none;
-  animation: sia-border-glow-spin 4.8s linear infinite;
+  animation: sia-border-glow-spin 6.8s linear infinite;
 }
 
 .ai-search-row:hover,
@@ -1341,16 +1361,6 @@ body {
 
 @keyframes sia-border-glow-spin {
   to { transform: rotate(1turn); }
-}
-
-@keyframes sia-border-glow-pulse {
-  from { opacity: .42; filter: blur(8px); }
-  to { opacity: .82; filter: blur(12px); }
-}
-
-@keyframes sia-prompt-glow-pulse {
-  from { box-shadow: 0 10px 28px rgb(63 63 63 / .08), 0 0 14px rgb(0 169 224 / .08); }
-  to { box-shadow: 0 12px 30px rgb(63 63 63 / .08), 0 0 26px rgb(18 168 224 / .2); }
 }
 
 .ai-search-row .saathi-voice {
@@ -1494,6 +1504,26 @@ body {
     margin-top: 0;
     min-height: 0;
     padding-top: calc(var(--saathi-help-overlap-active) + 38px);
+  }
+
+  .help .help-action-card {
+    min-height: 136px;
+    padding: 18px 132px 18px 18px;
+  }
+
+  .support-visual {
+    right: -42px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .help .help-action-card h3 {
+    font-size: 19px;
+  }
+
+  .help .help-action-card p {
+    font-size: 12px;
+    line-height: 1.45;
   }
 }
 
