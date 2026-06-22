@@ -150,7 +150,9 @@ summary:focus-visible {
 .header-nav { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 8px; margin-left: 10px; }
 .header-nav .secondary-link { min-height: 40px; border-radius: 999px; padding-inline: 14px; }
 .header-nav .quick-card-panel, .header-nav .explore-panel { left: 50%; right: auto; }
-.language { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--grey-30); background: white; border-radius: 999px; padding: 9px 14px; color: var(--heading); }
+.language, .location-chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--grey-30); background: white; border-radius: 999px; padding: 9px 14px; color: var(--heading); }
+.location-chip { flex-shrink: 0; color: var(--sbi-blue); font-weight: 700; max-width: 188px; }
+.location-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .search { position: relative; flex: 1 1 520px; max-width: 650px; min-width: 180px; }
 .search-logo { display: none; }
 .search input { width: 100%; height: 50px; border: 2px solid transparent; border-radius: 999px; padding: 0 148px 0 22px; outline: none; background: linear-gradient(white, white) padding-box, var(--ai-gradient) border-box; box-shadow: 0 8px 24px rgb(63 63 63 / .08); }
@@ -1289,77 +1291,66 @@ body {
 }
 
 .ai-search-row {
-  --sia-glow-angle: 0deg;
-  border: 1px solid var(--grey-30);
+  border: 1px solid transparent;
   isolation: isolate;
-  overflow: visible;
-  background:
-    linear-gradient(white, white) padding-box,
-    conic-gradient(
-      from var(--sia-glow-angle),
-      var(--grey-30),
-      var(--primary-blue-20),
-      var(--sbi-cyan),
-      var(--sbi-indigo),
-      var(--primary-blue),
-      var(--grey-30)
-    ) border-box;
-  box-shadow: 0 10px 28px rgb(63 63 63 / .08), 0 0 22px rgb(0 169 224 / .1);
-  animation: sia-border-glow-spin 5.8s linear infinite;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 10px 28px rgb(63 63 63 / .08), 0 0 18px rgb(0 169 224 / .08);
+  animation: sia-prompt-glow-pulse 3.8s var(--ease-standard) infinite alternate;
   transition:
     border-color var(--motion-standard) var(--ease-standard),
-    box-shadow var(--motion-standard) var(--ease-standard),
-    transform var(--motion-standard) var(--ease-out-strong);
+    box-shadow var(--motion-standard) var(--ease-standard);
 }
 
 .ai-search-row::after {
   content: "";
   position: absolute;
-  inset: -4px;
-  z-index: -1;
-  border-radius: inherit;
+  inset: -180%;
+  z-index: 0;
   background:
     conic-gradient(
-      from var(--sia-glow-angle),
-      transparent 0deg,
-      rgb(202 238 248 / 0) 40deg,
-      rgb(18 168 224 / .34) 76deg,
-      rgb(41 32 117 / .24) 116deg,
-      rgb(0 169 224 / .28) 156deg,
-      transparent 220deg,
-      rgb(202 238 248 / .26) 294deg,
-      transparent 360deg
+      from 0deg,
+      var(--grey-30) 0deg,
+      var(--primary-blue-20) 54deg,
+      var(--sbi-cyan) 112deg,
+      var(--sbi-indigo) 178deg,
+      var(--primary-blue) 244deg,
+      var(--primary-blue-20) 308deg,
+      var(--grey-30) 360deg
     );
-  filter: blur(10px);
-  opacity: .82;
+  opacity: .95;
   pointer-events: none;
-  animation: sia-border-glow-pulse 3.6s var(--ease-standard) infinite alternate;
+  animation: sia-border-glow-spin 4.8s linear infinite;
 }
 
 .ai-search-row:hover,
 .ai-search-row:focus-within {
-  border-color: var(--grey-40);
-  box-shadow: 0 18px 44px rgb(0 169 224 / .2), 0 8px 22px rgb(41 32 117 / .08);
-  transform: translateY(-1px);
+  border-color: transparent;
+  transform: none;
 }
 
 .ai-search-row::before {
-  inset: 1px;
+  inset: 3px;
+  z-index: 1;
 }
 
-@property --sia-glow-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
+.ai-search-row input,
+.ai-search-row button {
+  z-index: 2;
 }
 
 @keyframes sia-border-glow-spin {
-  to { --sia-glow-angle: 360deg; }
+  to { transform: rotate(1turn); }
 }
 
 @keyframes sia-border-glow-pulse {
   from { opacity: .42; filter: blur(8px); }
   to { opacity: .82; filter: blur(12px); }
+}
+
+@keyframes sia-prompt-glow-pulse {
+  from { box-shadow: 0 10px 28px rgb(63 63 63 / .08), 0 0 14px rgb(0 169 224 / .08); }
+  to { box-shadow: 0 12px 30px rgb(63 63 63 / .08), 0 0 26px rgb(18 168 224 / .2); }
 }
 
 .ai-search-row .saathi-voice {
