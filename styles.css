@@ -416,6 +416,70 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .help .support-copy p { color: var(--muted); margin-bottom: 0; line-height: 1.45; }
 .support-card { transition: background-color var(--motion-standard) var(--ease-standard), border-color var(--motion-standard) var(--ease-standard), transform var(--motion-standard) var(--ease-out-strong); }
 .support-card:hover, .support-card:focus-within { background: rgb(255 255 255 / .15); border-color: rgb(255 255 255 / .42); transform: translateY(-2px); }
+.help .help-action-card {
+  position: relative;
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--grey-30);
+  border-radius: 14px;
+  background: var(--grey-0);
+  color: var(--primary-purple);
+  padding: 17px 108px 17px 16px;
+  box-shadow: 0 12px 28px rgb(63 63 63 / .08);
+  text-decoration: none;
+}
+.help .help-action-card .support-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 9px;
+  max-width: 220px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--primary-purple);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.help .help-action-card h3 {
+  color: var(--primary-purple);
+  font-size: clamp(17px, 1.3vw, 20px);
+  line-height: 1.16;
+  font-weight: 900;
+}
+.help .help-action-card p {
+  color: var(--primary-purple);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.support-visual {
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background:
+    var(--support-image) right center / auto 100% no-repeat,
+    var(--primary-purple-10);
+  box-shadow: inset 0 0 0 1px var(--primary-blue-20);
+  transform: translateY(-50%);
+  transition: transform var(--motion-standard) var(--ease-out-strong);
+}
+.help .help-action-card:hover,
+.help .help-action-card:focus-visible {
+  background: var(--grey-0);
+  border-color: var(--primary-blue-20);
+  box-shadow: 0 18px 40px rgb(41 32 117 / .15);
+  transform: translateY(-2px);
+  outline: none;
+}
+.help .help-action-card:hover .support-visual,
+.help .help-action-card:focus-visible .support-visual {
+  transform: translateY(-50%) scale(1.03);
+}
 .footer { background: linear-gradient(180deg, white, var(--primary-purple-10)); border-top: 1px solid var(--line); padding-block: var(--space-section-tight); }
 .footer-grid { grid-template-columns: 1fr 2fr; }
 .footer-brand { display: flex; align-items: center; gap: 12px; color: var(--sbi-blue); font-weight: 700; }
