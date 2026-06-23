@@ -691,6 +691,7 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   width: fit-content;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   min-height: 32px;
   margin-top: 2px;
   border: 1px solid var(--primary-blue-20);
@@ -702,6 +703,20 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   font-weight: 900;
   line-height: 1;
   box-shadow: 0 8px 18px rgb(0 169 224 / .08);
+}
+.support-cta .lucide {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.4;
+}
+.support-cta-tertiary {
+  min-height: 0;
+  border-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--sbi-blue);
 }
 .support-visual {
   position: absolute;
