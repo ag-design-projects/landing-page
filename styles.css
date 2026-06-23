@@ -503,7 +503,6 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 }
 
 .service-card > .lucide,
-.service-logo,
 .service-icon {
   position: relative;
   z-index: 1;
@@ -530,8 +529,8 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 }
 
 .service-icon svg {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   overflow: visible;
 }
 
@@ -553,96 +552,6 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 
 .service-icon .icon-accent {
   stroke: var(--sbi-cyan);
-}
-
-.service-logo {
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  padding: 10px;
-}
-
-.service-logo img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-}
-
-.service-logo strong,
-.service-logo em {
-  display: block;
-  font-style: normal;
-  line-height: 1;
-}
-
-.logo-yono {
-  background: linear-gradient(135deg, #292075, #5d2290);
-  color: white;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .18), 0 10px 22px rgb(41 32 117 / .18);
-}
-
-.logo-yono strong {
-  font-size: 17px;
-  letter-spacing: -.04em;
-}
-
-.logo-yono em {
-  margin-top: 3px;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: .06em;
-}
-
-.logo-sbi-online,
-.logo-sbi-service {
-  background: rgb(255 255 255 / .92);
-}
-
-.logo-sbi-online img {
-  width: 40px;
-  height: 40px;
-  transform: scale(1.15);
-}
-
-.logo-whatsapp {
-  border-radius: 16px;
-  background: #25d366;
-  color: white;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22), 0 10px 22px rgb(37 211 102 / .2);
-}
-
-.whatsapp-mark {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  border: 3px solid white;
-  border-radius: 50%;
-}
-
-.whatsapp-mark::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  bottom: -6px;
-  width: 12px;
-  height: 12px;
-  background: #25d366;
-  border-left: 3px solid white;
-  border-bottom: 3px solid white;
-  transform: rotate(-20deg);
-}
-
-.whatsapp-mark::after {
-  content: "";
-  position: absolute;
-  left: 9px;
-  top: 9px;
-  width: 13px;
-  height: 7px;
-  border-left: 4px solid white;
-  border-bottom: 4px solid white;
-  border-radius: 0 0 0 8px;
-  transform: rotate(-45deg);
 }
 
 .service-copy {
@@ -830,19 +739,20 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   background-position: 52% 84%;
 }
 .help-branch-card {
-  padding-right: 232px;
+  padding-right: calc(43% + 24px);
 }
 .help-branch-card .support-visual {
-  right: 16px;
-  width: 198px;
-  height: 118px;
-  border-radius: 18px;
+  top: 0;
+  right: 0;
+  width: 43%;
+  height: 100%;
+  border-radius: 0 18px 18px 0;
   overflow: hidden;
-  transform: translateY(-50%);
-  box-shadow: 0 14px 30px rgb(41 32 117 / .14);
+  transform: none;
+  box-shadow: none;
 }
 .help-branch-card .support-visual::before {
-  background: var(--primary-blue-20);
+  background: var(--primary-blue-10);
 }
 .help-branch-card .support-visual::after {
   inset: 0;
@@ -850,9 +760,9 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   background-position: center;
 }
 .help-care-card .support-visual::after {
-  inset: -26px -34px -18px -64px;
-  background-size: 212px auto;
-  background-position: 52% 12%;
+  inset: -8px -34px -34px -64px;
+  background-size: 204px auto;
+  background-position: 52% 44%;
   transform: scaleX(-1);
 }
 .help .help-action-card:hover,
@@ -866,6 +776,10 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .help .help-action-card:hover .support-visual,
 .help .help-action-card:focus-visible .support-visual {
   transform: translateY(-50%) scale(1.03);
+}
+.help .help-branch-card:hover .support-visual,
+.help .help-branch-card:focus-visible .support-visual {
+  transform: none;
 }
 .help .help-action-card:hover .support-cta,
 .help .help-action-card:focus-visible .support-cta {
@@ -1908,7 +1822,7 @@ body {
   }
 
   .help-branch-card {
-    padding-right: 156px;
+    padding-right: calc(38% + 16px);
   }
 
   .support-visual {
@@ -1946,16 +1860,18 @@ body {
   }
 
   .help-branch-card .support-visual {
-    right: 12px;
-    width: 128px;
-    height: 92px;
-    border-radius: 14px;
+    top: 0;
+    right: 0;
+    width: 38%;
+    height: 100%;
+    border-radius: 0 18px 18px 0;
+    transform: none;
   }
 
   .help-care-card .support-visual::after {
-    inset: -22px -28px -14px -52px;
-    background-size: 190px auto;
-    background-position: 52% 12%;
+    inset: -4px -28px -28px -52px;
+    background-size: 182px auto;
+    background-position: 52% 44%;
     transform: scaleX(-1);
   }
 }
