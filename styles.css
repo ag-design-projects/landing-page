@@ -526,12 +526,12 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 8px;
+  padding: 10px;
 }
 
 .service-logo img {
-  width: 24px;
-  height: 24px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
@@ -562,16 +562,13 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 
 .logo-sbi-online,
 .logo-sbi-service {
-  grid-template-rows: 24px auto;
-  gap: 4px;
+  background: rgb(255 255 255 / .92);
 }
 
-.logo-sbi-online em,
-.logo-sbi-service em {
-  color: var(--primary-purple);
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: -.02em;
+.logo-sbi-online img {
+  width: 40px;
+  height: 40px;
+  transform: scale(1.15);
 }
 
 .logo-whatsapp {
@@ -581,12 +578,38 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22), 0 10px 22px rgb(37 211 102 / .2);
 }
 
-.logo-whatsapp strong {
-  max-width: 42px;
-  font-size: 10px;
-  line-height: 1.05;
-  text-align: center;
-  letter-spacing: -.03em;
+.whatsapp-mark {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+.whatsapp-mark::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background: #25d366;
+  border-left: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(-20deg);
+}
+
+.whatsapp-mark::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 9px;
+  width: 13px;
+  height: 7px;
+  border-left: 4px solid white;
+  border-bottom: 4px solid white;
+  border-radius: 0 0 0 8px;
+  transform: rotate(-45deg);
 }
 
 .service-card > span:not(.service-logo) {
@@ -748,18 +771,19 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   background: var(--support-image) center / contain no-repeat;
 }
 .help-whatsapp-card .support-visual::after {
-  inset: -54px -76px -40px -110px;
-  background-position: 39% 50%;
+  inset: -30px -44px -24px -70px;
+  background-position: 42% 62%;
 }
 .help-branch-card .support-visual::after {
-  inset: -104px -96px -34px -130px;
-  background-size: 340px auto;
-  background-position: 53% 75%;
+  inset: -78px -70px -26px -104px;
+  background-size: 302px auto;
+  background-position: 52% 84%;
 }
 .help-care-card .support-visual::after {
-  inset: -64px -42px -6px -78px;
-  background-size: 250px auto;
-  background-position: 48% 28%;
+  inset: -26px -34px -18px -64px;
+  background-size: 212px auto;
+  background-position: 52% 12%;
+  transform: scaleX(-1);
 }
 .help .help-action-card:hover,
 .help .help-action-card:focus-visible {
@@ -1832,20 +1856,21 @@ body {
   }
 
   .help-whatsapp-card .support-visual::after {
-    inset: -42px -58px -30px -86px;
-    background-position: 40% 50%;
+    inset: -26px -38px -22px -62px;
+    background-position: 43% 64%;
   }
 
   .help-branch-card .support-visual::after {
-    inset: -84px -72px -26px -104px;
-    background-size: 292px auto;
-    background-position: 54% 74%;
+    inset: -64px -54px -20px -82px;
+    background-size: 258px auto;
+    background-position: 52% 84%;
   }
 
   .help-care-card .support-visual::after {
-    inset: -50px -34px -4px -66px;
-    background-size: 222px auto;
-    background-position: 48% 30%;
+    inset: -22px -28px -14px -52px;
+    background-size: 190px auto;
+    background-position: 52% 12%;
+    transform: scaleX(-1);
   }
 }
 
