@@ -744,6 +744,23 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   font-size: 13px;
   line-height: 1.6;
 }
+.support-cta {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  margin-top: 2px;
+  border: 1px solid var(--primary-blue-20);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: white;
+  color: var(--sbi-blue);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgb(0 169 224 / .08);
+}
 .support-visual {
   position: absolute;
   right: -34px;
@@ -779,6 +796,26 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   background-size: 302px auto;
   background-position: 52% 84%;
 }
+.help-branch-card {
+  padding-right: 232px;
+}
+.help-branch-card .support-visual {
+  right: 16px;
+  width: 198px;
+  height: 118px;
+  border-radius: 18px;
+  overflow: hidden;
+  transform: translateY(-50%);
+  box-shadow: 0 14px 30px rgb(41 32 117 / .14);
+}
+.help-branch-card .support-visual::before {
+  background: var(--primary-blue-20);
+}
+.help-branch-card .support-visual::after {
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
 .help-care-card .support-visual::after {
   inset: -26px -34px -18px -64px;
   background-size: 212px auto;
@@ -796,6 +833,11 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 .help .help-action-card:hover .support-visual,
 .help .help-action-card:focus-visible .support-visual {
   transform: translateY(-50%) scale(1.03);
+}
+.help .help-action-card:hover .support-cta,
+.help .help-action-card:focus-visible .support-cta {
+  border-color: var(--sbi-blue);
+  background: var(--primary-blue-10);
 }
 .footer { background: linear-gradient(180deg, white, var(--primary-purple-10)); border-top: 1px solid var(--line); padding-block: var(--space-section-tight); }
 .footer-grid { grid-template-columns: 1fr 2fr; }
@@ -1832,6 +1874,10 @@ body {
     padding: 18px 132px 18px 18px;
   }
 
+  .help-branch-card {
+    padding-right: 156px;
+  }
+
   .support-visual {
     right: -42px;
     width: 150px;
@@ -1861,9 +1907,16 @@ body {
   }
 
   .help-branch-card .support-visual::after {
-    inset: -64px -54px -20px -82px;
-    background-size: 258px auto;
-    background-position: 52% 84%;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .help-branch-card .support-visual {
+    right: 12px;
+    width: 128px;
+    height: 92px;
+    border-radius: 14px;
   }
 
   .help-care-card .support-visual::after {
