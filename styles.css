@@ -503,7 +503,8 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
 }
 
 .service-card > .lucide,
-.service-logo {
+.service-logo,
+.service-icon {
   position: relative;
   z-index: 1;
   flex: 0 0 auto;
@@ -520,6 +521,38 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   height: 48px;
   padding: 12px;
   stroke-width: 1.8;
+}
+
+.service-icon {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, white, var(--primary-blue-10));
+}
+
+.service-icon svg {
+  width: 36px;
+  height: 36px;
+  overflow: visible;
+}
+
+.service-icon .icon-fill {
+  fill: var(--primary-blue-20);
+}
+
+.service-icon .icon-line,
+.service-icon .icon-accent {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.6;
+}
+
+.service-icon .icon-line {
+  stroke: var(--sbi-blue);
+}
+
+.service-icon .icon-accent {
+  stroke: var(--sbi-cyan);
 }
 
 .service-logo {
@@ -612,24 +645,24 @@ p { color: var(--muted); line-height: 1.65; margin-block: 0; }
   transform: rotate(-45deg);
 }
 
-.service-card > span:not(.service-logo) {
+.service-copy {
   position: relative;
   z-index: 1;
   align-self: end;
 }
 
-.service-card > span:not(.service-logo) b,
-.service-card > span:not(.service-logo) small {
+.service-copy b,
+.service-copy small {
   display: block;
 }
 
-.service-card > span:not(.service-logo) b {
+.service-copy b {
   color: var(--sbi-blue);
   font-size: clamp(17px, 1.5vw, 21px);
   line-height: 1.12;
 }
 
-.service-card > span:not(.service-logo) small {
+.service-copy small {
   max-width: 18ch;
   margin-top: 8px;
   color: var(--muted);
