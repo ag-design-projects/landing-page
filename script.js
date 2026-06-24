@@ -511,14 +511,14 @@ document.addEventListener("keydown", (event) => {
 
 const translationDictionary = {
   hi: {
-    "SBI Web Home Experience": "SBI वेब होम अनुभव",
+    "Bank Web Home Experience": "Bank वेब होम अनुभव",
     "Education loans up to Rs. 1.5 Cr - apply online in minutes": "1.5 करोड़ रुपये तक शिक्षा ऋण - मिनटों में ऑनलाइन आवेदन करें",
     "RBI advisory - never share OTP or PIN with anyone": "RBI सलाह - OTP या PIN कभी किसी से साझा न करें",
     "Meet SIA - your AI assistant in 12+ Indian languages": "SIA से मिलें - 12+ भारतीय भाषाओं में आपका AI सहायक",
     "FD rates revised: senior citizens earn up to 7.50% p.a.": "FD दरों में बदलाव: वरिष्ठ नागरिक 7.50% वार्षिक तक कमा सकते हैं",
-    "YONO 3.0 is here - refreshed design, faster experience": "YONO 3.0 आ गया है - नया डिज़ाइन, तेज अनुभव",
-    "PM Vishwakarma loans now available at all SBI branches": "PM विश्वकर्मा ऋण अब सभी SBI शाखाओं में उपलब्ध",
-    "Explore SBI": "SBI देखें",
+    "Mobile App 3.0 is here - refreshed design, faster experience": "Mobile App 3.0 आ गया है - नया डिज़ाइन, तेज अनुभव",
+    "PM Vishwakarma loans now available at all Bank branches": "PM विश्वकर्मा ऋण अब सभी Bank शाखाओं में उपलब्ध",
+    "Explore Bank": "Bank देखें",
     "Explore": "देखें",
     "Banking, loans, investments and support pathways arranged for quick decisions.": "बैंकिंग, ऋण, निवेश और सहायता विकल्प तेज निर्णय के लिए व्यवस्थित हैं।",
     "Banking": "बैंकिंग",
@@ -546,12 +546,12 @@ const translationDictionary = {
     "Customer Care": "ग्राहक सेवा",
     "Phone, email and complaints": "फोन, ईमेल और शिकायतें",
     "Find Branch / ATM": "शाखा / ATM खोजें",
-    "Locate nearest SBI": "निकटतम SBI खोजें",
+    "Locate nearest Bank": "निकटतम Bank खोजें",
     "Forms & Downloads": "फॉर्म और डाउनलोड",
     "Applications and checklists": "आवेदन और चेकलिस्ट",
     "Quick Links": "त्वरित लिंक",
     "Quick access": "त्वरित पहुंच",
-    "Everyday SBI actions grouped by the tasks customers use most often.": "ग्राहकों द्वारा सबसे अधिक उपयोग किए जाने वाले SBI कार्य एक जगह।",
+    "Everyday Bank actions grouped by the tasks customers use most often.": "ग्राहकों द्वारा सबसे अधिक उपयोग किए जाने वाले Bank कार्य एक जगह।",
     "Accounts": "खाते",
     "Savings": "बचत",
     "Open or manage savings accounts": "बचत खाता खोलें या प्रबंधित करें",
@@ -569,7 +569,7 @@ const translationDictionary = {
     "Kisan / MUDRA": "किसान / मुद्रा",
     "Farm and small business credit": "कृषि और छोटे व्यवसाय के लिए ऋण",
     "Digital Banking": "डिजिटल बैंकिंग",
-    "Mobile-first SBI banking": "मोबाइल-फर्स्ट SBI बैंकिंग",
+    "Mobile-first Bank banking": "मोबाइल-फर्स्ट Bank बैंकिंग",
     "Internet Banking": "इंटरनेट बैंकिंग",
     "Payments and services": "भुगतान और सेवाएं",
     "UPI": "UPI",
@@ -601,7 +601,7 @@ const translationDictionary = {
     "Tax & DTAA": "कर और DTAA",
     "Tax support information": "कर सहायता जानकारी",
     "Toll-free Numbers": "टोल-फ्री नंबर",
-    "Reach SBI support": "SBI सहायता से जुड़ें",
+    "Reach Bank support": "Bank सहायता से जुड़ें",
     "Email Us": "हमें ईमेल करें",
     "Write to customer care": "ग्राहक सेवा को लिखें",
     "Branch Locator": "शाखा खोजक",
@@ -620,7 +620,7 @@ const translationDictionary = {
     "Repayment tenure": "भुगतान अवधि",
     "Starting rate": "शुरुआती दर",
     "Buy your dream home": "अपना सपनों का घर खरीदें",
-    "with SBI": "SBI के साथ",
+    "with Bank": "Bank के साथ",
     "Lowest interest rates, doorstep service and approvals in days - whether you're building, buying or renovating.": "कम ब्याज दरें, डोरस्टेप सेवा और कुछ दिनों में स्वीकृति - चाहे आप बना रहे हों, खरीद रहे हों या नवीनीकरण कर रहे हों।",
     "Apply Now": "अभी आवेदन करें",
     "EMI Calculator": "EMI कैलकुलेटर",
@@ -640,8 +640,8 @@ const translationDictionary = {
     "Ask anything in your language...": "अपनी भाषा में कुछ भी पूछें...",
     "Mujhe kisan loan chahiye, kaise milega?": "मुझे किसान ऋण चाहिए, कैसे मिलेगा?",
     "How to open a savings account?": "बचत खाता कैसे खोलें?",
-    "Show nearest SBI branch": "नजदीकी SBI शाखा दिखाएं",
-    "AI guidance is for help only. Please confirm final terms with SBI.": "AI मार्गदर्शन केवल सहायता के लिए है। अंतिम शर्तें SBI से पुष्टि करें।",
+    "Show nearest Bank branch": "नजदीकी Bank शाखा दिखाएं",
+    "AI guidance is for help only. Please confirm final terms with Bank.": "AI मार्गदर्शन केवल सहायता के लिए है। अंतिम शर्तें Bank से पुष्टि करें।",
     "Need help? We're here.": "मदद चाहिए? हम हैं।",
     "Real people. Trusted answers. Available across India.": "वास्तविक लोग। भरोसेमंद उत्तर। पूरे भारत में उपलब्ध।",
     "Talk to a Branch Officer": "शाखा अधिकारी से बात करें",
@@ -649,7 +649,7 @@ const translationDictionary = {
     "Community Support": "समुदाय सहायता",
     "We'll call you in your preferred language.": "हम आपकी पसंदीदा भाषा में कॉल करेंगे।",
     "Connect with local guidance and support channels.": "स्थानीय मार्गदर्शन और सहायता चैनलों से जुड़ें।",
-    "1800 1234 / 1800 2100 (toll-free)\ncustomercare@sbi.co.in": "1800 1234 / 1800 2100 (टोल-फ्री)\ncustomercare@sbi.co.in",
+    "1800 1234 / 1800 2100 (toll-free)\ncustomercare@bank.example": "1800 1234 / 1800 2100 (टोल-फ्री)\ncustomercare@bank.example",
     "FAQs": "अक्सर पूछे जाने वाले प्रश्न",
     "Find answers for accounts, cards, loans and digital banking.": "खातों, कार्ड, ऋण और डिजिटल बैंकिंग के उत्तर पाएं।",
     "I am visiting this website for the first time": "मैं पहली बार इस वेबसाइट पर आया/आई हूं",
@@ -686,7 +686,7 @@ const translationDictionary = {
     "Visit your branch or use supported official digital channels where available. Keep your identity documents ready for verification.": "अपनी शाखा जाएं या उपलब्ध आधिकारिक डिजिटल चैनल का उपयोग करें। सत्यापन के लिए पहचान दस्तावेज तैयार रखें।",
     "How do I find the right loan product?": "सही ऋण उत्पाद कैसे चुनूं?",
     "Compare eligibility, tenure, fees, collateral requirements, and repayment comfort before applying. Branch staff can help validate final terms.": "आवेदन से पहले पात्रता, अवधि, शुल्क, जमानत जरूरत और भुगतान सुविधा की तुलना करें। शाखा कर्मचारी अंतिम शर्तें समझाने में मदद कर सकते हैं।",
-    "Find SBI near you": "अपने पास SBI खोजें",
+    "Find Bank near you": "अपने पास Bank खोजें",
     "Branches, ATMs, Customer Service Points and lockers across India.": "भारत भर में शाखाएं, ATM, ग्राहक सेवा केंद्र और लॉकर।",
     "Branch": "शाखा",
     "ATM": "ATM",
@@ -696,19 +696,19 @@ const translationDictionary = {
     "Enter village, town, city or PIN code": "गांव, कस्बा, शहर या PIN कोड दर्ज करें",
     "Nearest branch in your area is 1.2 km away": "आपके क्षेत्र की निकटतम शाखा 1.2 किमी दूर है",
     "MG Road Branch, Bengaluru - Open until 4:00 PM": "MG Road शाखा, बेंगलुरु - शाम 4:00 बजे तक खुली",
-    "SBI Branch": "SBI शाखा",
-    "Why SBI": "SBI क्यों",
+    "Bank Branch": "Bank शाखा",
+    "Why Bank": "Bank क्यों",
     "Trusted by Bharat, built for every Indian.": "भारत का भरोसा, हर भारतीय के लिए निर्मित।",
     "Years of trust": "वर्षों का भरोसा",
     "Customers served": "ग्राहकों की सेवा",
     "Branches": "शाखाएं",
     "ATMs & CSPs": "ATM और CSP",
-    "\"From my village to my smartphone - SBI has always been there.\"": "\"मेरे गांव से मेरे स्मार्टफोन तक - SBI हमेशा साथ रहा है।\"",
+    "\"From my village to my smartphone - Bank has always been there.\"": "\"मेरे गांव से मेरे स्मार्टफोन तक - Bank हमेशा साथ रहा है।\"",
     "- Lakshmi, Madurai": "- लक्ष्मी, मदुरै",
-    "State Bank of India": "भारतीय स्टेट बैंक",
+    "The Bank": "भारतीय स्टेट बैंक",
     "The Banker to Every Indian": "हर भारतीय का बैंकर",
     "Serving 50+ crore Indians across 22,000+ branches, ATMs and Customer Service Points - built on 220+ years of trust.": "22,000+ शाखाओं, ATM और ग्राहक सेवा केंद्रों के माध्यम से 50+ करोड़ भारतीयों की सेवा - 220+ वर्षों के भरोसे पर आधारित।",
-    "About SBI": "SBI के बारे में",
+    "About Bank": "Bank के बारे में",
     "Overview": "अवलोकन",
     "Investor Relations": "निवेशक संबंध",
     "Careers": "करियर",
@@ -760,7 +760,7 @@ const translationDictionary = {
     "Highlights": "मुख्य बातें",
     "Apply": "आवेदन करें",
     "Open savings account": "बचत खाता खोलें",
-    "Nearest SBI branch": "नजदीकी SBI शाखा",
+    "Nearest Bank branch": "नजदीकी Bank शाखा",
     "I have another question": "मेरा एक और प्रश्न है",
     "Ask SIA": "SIA से पूछें"
   }
@@ -809,7 +809,7 @@ function applyLanguage(language) {
   translatableInputs.forEach(({ input, original }) => {
     input.setAttribute("placeholder", translateText(original, language));
   });
-  document.title = translateText("SBI Web Home Experience", language);
+  document.title = translateText("Bank Web Home Experience", language);
   languageOptions.forEach((option) => {
     if (option.dataset.lang === language) {
       option.setAttribute("aria-current", "true");
@@ -819,7 +819,7 @@ function applyLanguage(language) {
   });
   if (languageLabel) languageLabel.textContent = language === "hi" ? "हिन्दी" : "English";
   try {
-    localStorage.setItem("sbi-language", language);
+    localStorage.setItem("Bank-language", language);
   } catch (error) {
     // Language switching still works even when storage is unavailable.
   }
@@ -840,7 +840,7 @@ languageOptions.forEach((option) => {
 });
 let savedLanguage = "en";
 try {
-  savedLanguage = localStorage.getItem("sbi-language") === "hi" ? "hi" : "en";
+  savedLanguage = localStorage.getItem("Bank-language") === "hi" ? "hi" : "en";
 } catch (error) {
   savedLanguage = "en";
 }
